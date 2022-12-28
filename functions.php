@@ -1,25 +1,5 @@
 <?php
-/**
-* ----------------------------------------------------------------------------
-* "THE BEER-WARE LICENSE" (Revision 42):
-* <macki@dracheburg.ch> wrote this file. As long as you retain this notice you
-* can do whatever you want with this stuff. If we meet some day, and you think
-* this stuff is worth it, you can buy me a beer in return. JoÃ«l Stampfli / Macki
-* ----------------------------------------------------------------------------
-**/
 
-//Config
-$user = "lux@pfadiangenstein.ch"; //User needs to be "Adressverwalter"
-$password = "Apfelmostt813";
-$urlBase = "https://db.scout.ch";
-$groups2get = "1"; //Groupids
-
-//hard config
-$arrLabels = array("Spezialfunktion", "Fonction spÃ©ciale", "funzione speciale"); //Display labels instead role_type for these roles
-$labels = implode(",", $arrLabels);
-$labels = utf8_encode($labels);
-$arrLabels = explode(",", $labels);
-//*********************************************************************//
 class scoutDB {
     function scoutDB () {
 
@@ -145,25 +125,5 @@ class scoutDB {
     return $people;
     }
 }
-
-//*********************************************************************//
-//Debug out
-
-//init scoutDB
-$db = new scoutDB;
-//JSON request on groupid
-$people = $db->getGroups($groups2get);
-echo "<html><body><table>";
-for ($i = 0; $i < count($people); $i++) {
-    echo "<tr>";
-    foreach ($people[$i] as $value) {
-        echo "<td>" . utf8_decode($value) . "</td>";
-    }
-    echo "</tr>";
-    // JSON Schnittstelle_20180810.docx 6/6
-}
-echo "</table></body></html>";
-echo count($people);
-//var_dump($decoded["people"]);
 
 ?>

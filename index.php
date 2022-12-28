@@ -1,3 +1,22 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+require "config.php";
+require "functions.php";
+
+if( !$_SESSION['auth'] ) { 
+	header("Location: login.php"); 
+} else {
+
+$edit = false;
+if(isset($_GET['token'])) {
+	$checkToken = checkToken($_GET['token']);
+	if($checkToken != false && isset($_GET['edit'])) {
+		$edit = true;
+		$arr = $checkToken;
+	}
+}
+?>
+
 <html>
     <head>
         <title>Material bestellen</title>
